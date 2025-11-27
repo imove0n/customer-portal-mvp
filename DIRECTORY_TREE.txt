@@ -1,0 +1,40 @@
+customer-portal-mvp/
+├── backend/
+│   ├── server.js                 # Express API server with all routes
+│   ├── database.js               # SQLite database setup and schema
+│   ├── package.json              # Backend dependencies
+│   ├── .env                      # Environment variables
+│   ├── .env.example              # Environment template
+│   └── customer_portal.db        # SQLite database (auto-generated)
+│
+├── frontend/
+│   ├── app/
+│   │   ├── page.tsx              # Login page (/)
+│   │   ├── layout.tsx            # Root layout
+│   │   ├── globals.css           # Global styles and animations
+│   │   ├── dashboard/
+│   │   │   └── page.tsx          # Bookings list (/dashboard)
+│   │   └── booking/
+│   │       └── [id]/
+│   │           └── page.tsx      # Booking details (/booking/[id])
+│   ├── lib/
+│   │   ├── api.ts                # API client functions
+│   │   └── types.ts              # TypeScript interfaces
+│   ├── package.json              # Frontend dependencies
+│   ├── tsconfig.json             # TypeScript configuration
+│   ├── tailwind.config.ts        # Tailwind + custom design system
+│   ├── postcss.config.js         # PostCSS configuration
+│   ├── next.config.js            # Next.js configuration
+│   └── .env.local                # Frontend environment variables
+│
+├── README.md                     # Main project documentation
+├── SETUP.md                      # Quick start guide
+├── TECH_NOTES.md                 # Technical documentation
+├── FEATURES.md                   # Feature showcase
+├── DEPLOYMENT.md                 # Deployment guide
+├── PROJECT_SUMMARY.md            # Project overview
+├── QUICK_REFERENCE.md            # Quick reference card
+├── .gitignore                    # Git ignore rules
+└── DIRECTORY_TREE.txt            # This file
+
+Total: 25+ files across 2 main directories

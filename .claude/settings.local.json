@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(node add-bookings.js:*)",
+      "Bash(TOKEN=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhaUBhY2N1cG9pbnQucGgiLCJpYXQiOjE3NjQyNTE5MjMsImV4cCI6MTc2NDg1NjcyM30.MgX2W2YNHr8RQ7aE8BOK6iIZvNXKhveiRvHHi3lg_i0\")",
+      "Bash(python:*)",
+      "Bash(node test-messages.js:*)",
+      "Bash(node create-admin.js:*)",
+      "Bash(node migrate-add-role.js:*)",
+      "Bash(node:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(npm start)",
+      "Bash(timeout /t 3 /nobreak)",
+      "Bash(set TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhZG1pbkBhY2N1cG9pbnQucGgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjQyNTUxNzcsImV4cCI6MTc2NDg1OTk3N30.jzIXVQIgxiFbAaWJkmbLIrz6iyFLOXe0tvyuiBKYDUI)",
+      "Bash(timeout:*)",
+      "Bash(start /B npm start)",
+      "Bash(dir nul)",
+      "Bash(git rm:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
