@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { adminGetAllBookings, adminGetAllCustomers, adminCreateBooking, adminUpdateBooking, adminDeleteBooking } from '@/lib/api';
-import { ArrowLeft, Calendar, Plus, Edit, Trash2, X, User } from 'lucide-react';
+import { ArrowLeft, Plus, Edit, Trash2, X, CheckCircle } from 'lucide-react';
 
 interface Customer {
   id: number;
@@ -36,6 +36,8 @@ export default function AdminBookingsPage() {
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState<'create' | 'edit'>('create');
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
   // Form state
   const [formData, setFormData] = useState({
@@ -130,12 +132,20 @@ export default function AdminBookingsPage() {
       if (modalMode === 'create') {
         const newBooking = await adminCreateBooking(bookingData);
         setBookings([newBooking, ...bookings]);
+        setSuccessMessage('Booking created successfully!');
       } else {
         const updated = await adminUpdateBooking(selectedBooking!.id.toString(), bookingData);
         setBookings(bookings.map(b => b.id === updated.id ? updated : b));
+        setSuccessMessage('Booking updated successfully!');
       }
       setShowModal(false);
+      setShowSuccessAlert(true);
       fetchData(); // Refresh to get customer info
+
+      // Auto-hide alert after 4 seconds
+      setTimeout(() => {
+        setShowSuccessAlert(false);
+      }, 4000);
     } catch (error) {
       console.error('Submit error:', error);
       alert('Failed to save booking');
@@ -429,6 +439,35 @@ export default function AdminBookingsPage() {
                     </button>
                   </div>
                 </form>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Success Alert Toast */}
+        {showSuccessAlert && (
+          <div className="fixed top-8 right-8 z-[60] animate-slide-in">
+            <div className="glass-card rounded-2xl p-6 shadow-2xl border-2 border-mint-400 min-w-[400px]">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-mint-400 to-mint-500 rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-7 h-7 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-slate-800 mb-1">Success!</h3>
+                  <p className="text-slate-600">{successMessage}</p>
+                </div>
+                <button
+                  onClick={() => setShowSuccessAlert(false)}
+                  className="flex-shrink-0 text-slate-400 hover:text-slate-600 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              {/* Progress bar */}
+              <div className="mt-4 h-1 bg-slate-200 rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-mint-400 to-mint-500 rounded-full animate-progress" />
               </div>
             </div>
           </div>
