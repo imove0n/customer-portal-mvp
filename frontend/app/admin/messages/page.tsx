@@ -162,7 +162,7 @@ export default function AdminMessages() {
                   const lastMessage = data.messages[data.messages.length - 1]
                   const bookingIdNum = Number(bookingId)
                   const isViewed = viewedConversations.has(bookingIdNum)
-                  const unreadCount = isViewed ? 0 : data.messages.filter(m => m.sender_type === 'customer').length
+                  const unreadCount = isViewed ? 0 : data.messages.filter((m: Message) => m.sender_type === 'customer').length
 
                   return (
                     <button
