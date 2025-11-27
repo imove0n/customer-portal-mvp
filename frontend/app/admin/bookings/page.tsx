@@ -130,11 +130,9 @@ export default function AdminBookingsPage() {
       if (modalMode === 'create') {
         const newBooking = await adminCreateBooking(bookingData);
         setBookings([newBooking, ...bookings]);
-        alert('Booking created successfully!');
       } else {
         const updated = await adminUpdateBooking(selectedBooking!.id.toString(), bookingData);
         setBookings(bookings.map(b => b.id === updated.id ? updated : b));
-        alert('Booking updated successfully!');
       }
       setShowModal(false);
       fetchData(); // Refresh to get customer info
@@ -257,28 +255,36 @@ export default function AdminBookingsPage() {
 
         {/* Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900">
-                    {modalMode === 'create' ? 'Create New Booking' : 'Edit Booking'}
-                  </h2>
-                  <button onClick={() => setShowModal(false)} className="text-gray-500 hover:text-gray-700">
-                    <X className="w-6 h-6" />
+          <div className="fixed inset-0 bg-primary-950 bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-slide-in">
+            <div className="glass-card rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-primary-700">
+              <div className="p-8">
+                <div className="flex items-center justify-between mb-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-slate-800 mb-1">
+                      {modalMode === 'create' ? 'Create New Booking' : 'Edit Booking'}
+                    </h2>
+                    <p className="text-slate-500 text-sm">
+                      {modalMode === 'create' ? 'Add a new service booking for a customer' : 'Update booking information'}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                  >
+                    <X className="w-6 h-6 text-slate-400 hover:text-slate-600" />
                   </button>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Customer Select */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Customer *
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">
+                      Customer <span className="text-coral-500">*</span>
                     </label>
                     <select
                       value={formData.userId}
                       onChange={(e) => setFormData({...formData, userId: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                      className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-800 bg-white hover:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-400 focus:border-transparent transition-all shadow-sm"
                       required
                     >
                       <option value="">Select a customer</option>
@@ -290,30 +296,30 @@ export default function AdminBookingsPage() {
                     </select>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-6">
                     {/* Job Number */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Job Number *
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
+                        Job Number <span className="text-coral-500">*</span>
                       </label>
                       <input
                         type="text"
                         value={formData.jobNumber}
                         onChange={(e) => setFormData({...formData, jobNumber: e.target.value})}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                        className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-800 bg-white hover:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-400 focus:border-transparent transition-all shadow-sm"
                         required
                       />
                     </div>
 
                     {/* Status */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Status *
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
+                        Status <span className="text-coral-500">*</span>
                       </label>
                       <select
                         value={formData.status}
                         onChange={(e) => setFormData({...formData, status: e.target.value})}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                        className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-800 bg-white hover:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-400 focus:border-transparent transition-all shadow-sm"
                         required
                       >
                         <option value="Scheduled">Scheduled</option>
@@ -324,16 +330,16 @@ export default function AdminBookingsPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-6">
                     {/* Service Type */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Service Type *
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
+                        Service Type <span className="text-coral-500">*</span>
                       </label>
                       <select
                         value={formData.serviceType}
                         onChange={(e) => setFormData({...formData, serviceType: e.target.value})}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                        className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-800 bg-white hover:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-400 focus:border-transparent transition-all shadow-sm"
                         required
                       >
                         <option value="">Select service type</option>
@@ -349,22 +355,22 @@ export default function AdminBookingsPage() {
 
                     {/* Scheduled Date */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
                         Scheduled Date
                       </label>
                       <input
                         type="datetime-local"
                         value={formData.scheduledDate}
                         onChange={(e) => setFormData({...formData, scheduledDate: e.target.value})}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                        className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-800 bg-white hover:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-400 focus:border-transparent transition-all shadow-sm"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-6">
                     {/* Total Amount */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
                         Total Amount ($)
                       </label>
                       <input
@@ -372,21 +378,21 @@ export default function AdminBookingsPage() {
                         step="0.01"
                         value={formData.totalAmount}
                         onChange={(e) => setFormData({...formData, totalAmount: e.target.value})}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                        className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-800 bg-white hover:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-400 focus:border-transparent transition-all shadow-sm"
                         placeholder="0.00"
                       />
                     </div>
 
                     {/* Address */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
                         Address
                       </label>
                       <input
                         type="text"
                         value={formData.address}
                         onChange={(e) => setFormData({...formData, address: e.target.value})}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                        className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-800 bg-white hover:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-400 focus:border-transparent transition-all shadow-sm"
                         placeholder="123 Main St"
                       />
                     </div>
@@ -394,30 +400,30 @@ export default function AdminBookingsPage() {
 
                   {/* Description */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Description
                     </label>
                     <textarea
                       value={formData.description}
                       onChange={(e) => setFormData({...formData, description: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                      rows={3}
+                      className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-800 bg-white hover:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-400 focus:border-transparent transition-all resize-none shadow-sm"
+                      rows={4}
                       placeholder="Describe the service..."
                     />
                   </div>
 
                   {/* Buttons */}
-                  <div className="flex gap-3 pt-4">
+                  <div className="flex gap-4 pt-6 border-t border-slate-200 mt-6">
                     <button
                       type="submit"
-                      className="flex-1 bg-gray-900 text-white py-2 px-4 rounded-lg hover:bg-gray-800"
+                      className="flex-1 bg-gradient-to-r from-mint-400 to-mint-500 text-white font-semibold py-3.5 px-6 rounded-xl hover:from-mint-500 hover:to-mint-600 focus:outline-none focus:ring-2 focus:ring-mint-400 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     >
                       {modalMode === 'create' ? 'Create Booking' : 'Update Booking'}
                     </button>
                     <button
                       type="button"
                       onClick={() => setShowModal(false)}
-                      className="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-300"
+                      className="flex-1 bg-slate-100 text-slate-700 font-semibold py-3.5 px-6 rounded-xl hover:bg-slate-200 transition-all duration-200"
                     >
                       Cancel
                     </button>
