@@ -20,7 +20,6 @@
   ✓ Database: SQLite
   ✓ Authentication: JWT
   ✓ API Integration: ServiceM8 (real endpoint)
-  ✓ Custom UI Design (NOT Claude default)
 
 ✅ DELIVERABLES
   ✓ Working application (local setup ready)
