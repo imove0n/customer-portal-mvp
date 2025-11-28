@@ -106,7 +106,7 @@ The system successfully makes HTTP requests to ServiceM8's production API:
 
 ---
 
-## How AI (Claude Code) Assisted
+## How AI (CHATGPT) Assisted
 
 1. **Problem Solving**: Diagnosed and fixed sqlite3 compilation issue
 2. **Code Generation**: Created boilerplate and components
@@ -161,4 +161,4 @@ The system demonstrates competence in full-stack development, external API integ
 ---
 
 **Completed**: November 27, 2025
-**Developer**: Laurence De Guzman (with Claude Code)
+**Developer**: Laurence De Guzman (with CHATGPT)
