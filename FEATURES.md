@@ -2,7 +2,6 @@
 
 ## 🎨 Unique Custom Design
 
-Unlike generic templates or Claude's default UI, this portal features:
 
 ### Design Elements
 - **Glassmorphism cards** with backdrop blur effects
@@ -304,7 +303,6 @@ Pre-seeded with realistic examples:
 
 ## 💡 Why This Design Stands Out
 
-### Not Claude Default UI
 - **Custom color palette** (not purple/lavender)
 - **Unique glassmorphism** aesthetic
 - **Original component designs**
