@@ -69,7 +69,6 @@ customer-portal-mvp/
 ## 🎨 Design Highlights
 
 ### Unique Visual Identity
-- **NOT** Claude's default purple/lavender theme
 - **Custom** deep navy (#0F172A) and mint green (#4ECDC4) palette
 - **Glassmorphism** effects with backdrop blur
 - **Smooth animations** and transitions
